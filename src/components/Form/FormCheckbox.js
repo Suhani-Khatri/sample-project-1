@@ -3,17 +3,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Controller } from 'react-hook-form';
 
-// import FormFieldError from './FormFieldError';
-
-// import { getFieldError } from '#/utils/formValidations';
 import { StyledInput } from '../../modules/SignUp/SignUpForm.styled';
 
 import FormFieldError from './FormFieldError';
 
 const FormCheckbox = ({ control, checked, type, name, defaultValue, placeholder = '', errors, ...rest }) => {
-  // console.log({ errors });
   const error = errors?.[name];
-  // const { error, color } = getFieldError({ name, ...rest });
 
   return (
     <>
@@ -31,7 +26,7 @@ const FormCheckbox = ({ control, checked, type, name, defaultValue, placeholder 
   );
 };
 
-FormCheckbox.prototype = {
+FormCheckbox.propTypes = {
   control: PropTypes.string.isRequired,
   checked: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,

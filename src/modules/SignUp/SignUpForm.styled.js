@@ -12,9 +12,6 @@ export const StyledContainer = styled.div`
 `;
 
 export const StyledBlock = styled.div`
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
   padding: 40px 20px;
   max-width: 454px;
   width: 100%;

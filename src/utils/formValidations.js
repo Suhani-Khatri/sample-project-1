@@ -5,15 +5,16 @@ import {
   PASSWORD_FIELD_VALIDATION,
   TERMS_AND_CONDITIONS_REQUIRED,
 } from '../constants/message';
-import { ALPHABET_PATTERN, EMAIL_PATTERN } from '../constants/patterns';
-
-// export const getFieldError = ({ error, errors, name }) => {
-//   const newError = error && error.message;
-//   // (errors && lodashGet(errors, name) && lodashGet(errors, name).message);
-//   const color = newError && 'error';
-
-//   return { error: newError, color };
-// };
+import {
+  ALPHABET_PATTERN,
+  BLANK_SPACE,
+  EMAIL_PATTERN,
+  MIN_LENGTH,
+  ONLY_NUMBER,
+  PASSWORD_LOWERCASE_CHARACTER,
+  PASSWORD_SPECIAL_CHARACTER,
+  PASSWORD_UPPERCASE_CHARACTER,
+} from '../constants/patterns';
 
 export const ValidateFirstName = {
   required: {
@@ -29,21 +30,11 @@ export const ValidateFirstName = {
     message: FIRSTNAME_FIELD_VALIDATION.MAX_LENGTH,
   },
   validate: {
-    checkRegex: (firstName) => {
+    checkAlphabetCharacters: (firstName) => {
       const isValid = ALPHABET_PATTERN.test(firstName);
 
       if (!isValid) {
         return FIRSTNAME_FIELD_VALIDATION.INVALID;
-      }
-
-      return null;
-    },
-    checkSpecialCharacter: (firstName) => {
-      console.log(firstName);
-      const isInvalid = /[!@#$%^&*)(+=._-]+/g.test(firstName);
-
-      if (isInvalid) {
-        return FIRSTNAME_FIELD_VALIDATION.SPECIAL_CHARACTER_NOT_ALLOWED;
       }
 
       return null;
@@ -65,7 +56,7 @@ export const ValidateLastName = {
     message: LASTNAME_FIELD_VALIDATION.MAX_LENGTH,
   },
   validate: {
-    checkRegex: (lastName) => {
+    checkAlphabetCharacters: (lastName) => {
       const isValid = ALPHABET_PATTERN.test(lastName);
 
       if (!isValid) {
@@ -87,7 +78,7 @@ export const ValidateEmailAddress = {
     message: EMAIL_FIELD_VALIDATION.MAX_LENGTH,
   },
   validate: {
-    checkRegex: (email) => {
+    checkAlphabetCharacters: (email) => {
       const isValid = EMAIL_PATTERN.test(email);
 
       if (!isValid) {
@@ -113,9 +104,13 @@ export const ValidatePasswordValue = {
     value: true,
     message: PASSWORD_FIELD_VALIDATION.REQUIRED,
   },
+  maxLength: {
+    value: 20,
+    message: PASSWORD_FIELD_VALIDATION.MAX_LENGTH,
+  },
   validate: {
     checkSpace: (password) => {
-      const isInvalid = /[\s]+/g.test(password);
+      const isInvalid = BLANK_SPACE.test(password);
 
       if (isInvalid) {
         return PASSWORD_FIELD_VALIDATION.NO_SPACE;
@@ -123,26 +118,8 @@ export const ValidatePasswordValue = {
 
       return null;
     },
-    checkMinLength: (password) => {
-      const isInvalid = /.{8,}/g.test(password);
-
-      if (!isInvalid) {
-        return PASSWORD_FIELD_VALIDATION.MIN_LENGTH;
-      }
-
-      return null;
-    },
-    checkLowerCharacter: (password) => {
-      const isInvalid = /[a-z]+/g.test(password);
-
-      if (!isInvalid) {
-        return PASSWORD_FIELD_VALIDATION.REQUIRE_LOWERCASE_CHARACTER;
-      }
-
-      return null;
-    },
     checkUpperCharacter: (password) => {
-      const isInvalid = /[A-Z]+/g.test(password);
+      const isInvalid = PASSWORD_UPPERCASE_CHARACTER.test(password);
 
       if (!isInvalid) {
         return PASSWORD_FIELD_VALIDATION.REQUIRE_UPPERCASE_CHARACTER;
@@ -150,8 +127,17 @@ export const ValidatePasswordValue = {
 
       return null;
     },
+    checkLowerCharacter: (password) => {
+      const isInvalid = PASSWORD_LOWERCASE_CHARACTER.test(password);
+
+      if (!isInvalid) {
+        return PASSWORD_FIELD_VALIDATION.REQUIRE_LOWERCASE_CHARACTER;
+      }
+
+      return null;
+    },
     checkRequiredNumber: (password) => {
-      const isInvalid = /[0-9]+/g.test(password);
+      const isInvalid = ONLY_NUMBER.test(password);
 
       if (!isInvalid) {
         return PASSWORD_FIELD_VALIDATION.REQUIRE_NUMBER;
@@ -160,10 +146,19 @@ export const ValidatePasswordValue = {
       return null;
     },
     checkSpecialNumber: (password) => {
-      const isInvalid = /[!@#$%^&*)(+=._-]+/g.test(password);
+      const isInvalid = PASSWORD_SPECIAL_CHARACTER.test(password);
 
       if (!isInvalid) {
         return PASSWORD_FIELD_VALIDATION.REQUIRE_SPECIAL_CHARACTER;
+      }
+
+      return null;
+    },
+    checkMinLength: (password) => {
+      const isInvalid = MIN_LENGTH.test(password);
+
+      if (!isInvalid) {
+        return PASSWORD_FIELD_VALIDATION.MIN_LENGTH;
       }
 
       return null;
@@ -178,9 +173,10 @@ export const ValidateConfirmPasswordValue = {
   },
   validate: {
     checkIsSame: (confirmPassword, formValues) => {
-      const isValid = formValues.password === confirmPassword;
+      // const isValid = confirmPassword === formValues.password;
+      // console.log(`formvalues${formValues}`);
 
-      if (!isValid) {
+      if (confirmPassword !== formValues.password) {
         return PASSWORD_FIELD_VALIDATION.CONFIRM_PASSWORD_NOT_MATCHING;
       }
 

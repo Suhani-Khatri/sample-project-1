@@ -3,21 +3,25 @@ export const EMAIL_PATTERN =
 
 export const PASSWORD_PATTERN = /^[a-zA-Z0-9!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]*$/;
 
-export const PASSWORD_UPPERCASE_CHARACTER = /[A-Z]+/g;
+export const PASSWORD_UPPERCASE_CHARACTER = /[A-Z]+/;
 
-export const PASSWORD_LOWERCASE_CHARACTER = /[a-z]+/g;
+export const PASSWORD_LOWERCASE_CHARACTER = /[a-z]+/;
 
-export const PASSWORD_NUMBER = /[\d]+/g;
+export const PASSWORD_NUMBER = /[\d]+/;
 
-export const PASSWORD_SPECIAL_CHARACTER = /[!@#$%^&*)(+=._-]+/g;
+export const ONLY_NUMBER = /[0-9]+/;
 
-export const NAME_SPECIAL_CHARACTER = /[!@#$%^&*)(+=._-]+/g;
+export const PASSWORD_SPECIAL_CHARACTER = /[!@#$%^&*)(+=._-]+/;
+
+export const NAME_SPECIAL_CHARACTER = /[!@#$%^&*)(+=._-]+/;
 
 export const ALPHABET_PATTERN = /^[a-zA-Z]*$/;
 
 export const MOBILE_NUMBER = /^\d{10}$/;
 
 export const BLANK_SPACE = /\s/;
+
+export const MIN_LENGTH = /^(?=.*\d).{8,}$/;
 
 export const USER_NAME = /^(?=^.{1,30}$)[0-9a-zA-Z-_.]+$/;
 
