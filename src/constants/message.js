@@ -30,6 +30,8 @@ export const FIRSTNAME_FIELD_VALIDATION = {
   EMPTY: 'FirstName is required',
   INVALID: `Please enter only alphabetic characters`,
   MIN_LENGTH: `Minimum 3 characters required`,
+  MAX_LENGTH: `FirstName cannot be more than 50 characters`,
+  SPECIAL_CHARACTER_NOT_ALLOWED: `Special Character not allowed`,
 };
 
 export const LASTNAME_FIELD_VALIDATION = {
@@ -37,9 +39,5 @@ export const LASTNAME_FIELD_VALIDATION = {
   EMPTY: 'LastName is required',
   INVALID: `Please enter only alphabetic characters`,
   MIN_LENGTH: `Minimum 3 characters required`,
-};
-
-export const REGEX_MESSAGE = {
-  firstName: 'Special Characters are not allowed (1-50 characters)',
-  lastName: 'Special Characters are not allowed (1-50 characters)',
+  MAX_LENGTH: `LastName cannot be more than 50 characters`,
 };

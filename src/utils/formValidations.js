@@ -3,17 +3,17 @@ import {
   FIRSTNAME_FIELD_VALIDATION,
   LASTNAME_FIELD_VALIDATION,
   PASSWORD_FIELD_VALIDATION,
+  TERMS_AND_CONDITIONS_REQUIRED,
 } from '../constants/message';
-
 import { ALPHABET_PATTERN, EMAIL_PATTERN } from '../constants/patterns';
 
-export const getFieldError = ({ error, errors, name }) => {
-  const newError = error && error.message;
-  // (errors && lodashGet(errors, name) && lodashGet(errors, name).message);
-  const color = newError && 'error';
+// export const getFieldError = ({ error, errors, name }) => {
+//   const newError = error && error.message;
+//   // (errors && lodashGet(errors, name) && lodashGet(errors, name).message);
+//   const color = newError && 'error';
 
-  return { error: newError, color };
-};
+//   return { error: newError, color };
+// };
 
 export const ValidateFirstName = {
   required: {
@@ -24,12 +24,26 @@ export const ValidateFirstName = {
     value: 3,
     message: FIRSTNAME_FIELD_VALIDATION.MIN_LENGTH,
   },
+  maxLength: {
+    value: 50,
+    message: FIRSTNAME_FIELD_VALIDATION.MAX_LENGTH,
+  },
   validate: {
     checkRegex: (firstName) => {
       const isValid = ALPHABET_PATTERN.test(firstName);
 
       if (!isValid) {
         return FIRSTNAME_FIELD_VALIDATION.INVALID;
+      }
+
+      return null;
+    },
+    checkSpecialCharacter: (firstName) => {
+      console.log(firstName);
+      const isInvalid = /[!@#$%^&*)(+=._-]+/g.test(firstName);
+
+      if (isInvalid) {
+        return FIRSTNAME_FIELD_VALIDATION.SPECIAL_CHARACTER_NOT_ALLOWED;
       }
 
       return null;
@@ -46,12 +60,16 @@ export const ValidateLastName = {
     value: 3,
     message: LASTNAME_FIELD_VALIDATION.MIN_LENGTH,
   },
+  maxLength: {
+    value: 50,
+    message: LASTNAME_FIELD_VALIDATION.MAX_LENGTH,
+  },
   validate: {
-    checkRegex: (firstName) => {
-      const isValid = ALPHABET_PATTERN.test(firstName);
+    checkRegex: (lastName) => {
+      const isValid = ALPHABET_PATTERN.test(lastName);
 
       if (!isValid) {
-        return FIRSTNAME_FIELD_VALIDATION.INVALID;
+        return LASTNAME_FIELD_VALIDATION.INVALID;
       }
 
       return null;
@@ -78,6 +96,15 @@ export const ValidateEmailAddress = {
 
       return null;
     },
+    checkAlreadyExists: (email, formValues) => {
+      const isInValid = email === formValues.password;
+
+      if (isInValid) {
+        return EMAIL_FIELD_VALIDATION.ALREADY_EXISTS;
+      }
+
+      return null;
+    },
   },
 };
 
@@ -99,7 +126,7 @@ export const ValidatePasswordValue = {
     checkMinLength: (password) => {
       const isInvalid = /.{8,}/g.test(password);
 
-      if (isInvalid) {
+      if (!isInvalid) {
         return PASSWORD_FIELD_VALIDATION.MIN_LENGTH;
       }
 
@@ -108,7 +135,7 @@ export const ValidatePasswordValue = {
     checkLowerCharacter: (password) => {
       const isInvalid = /[a-z]+/g.test(password);
 
-      if (isInvalid) {
+      if (!isInvalid) {
         return PASSWORD_FIELD_VALIDATION.REQUIRE_LOWERCASE_CHARACTER;
       }
 
@@ -117,7 +144,7 @@ export const ValidatePasswordValue = {
     checkUpperCharacter: (password) => {
       const isInvalid = /[A-Z]+/g.test(password);
 
-      if (isInvalid) {
+      if (!isInvalid) {
         return PASSWORD_FIELD_VALIDATION.REQUIRE_UPPERCASE_CHARACTER;
       }
 
@@ -126,7 +153,7 @@ export const ValidatePasswordValue = {
     checkRequiredNumber: (password) => {
       const isInvalid = /[0-9]+/g.test(password);
 
-      if (isInvalid) {
+      if (!isInvalid) {
         return PASSWORD_FIELD_VALIDATION.REQUIRE_NUMBER;
       }
 
@@ -135,8 +162,40 @@ export const ValidatePasswordValue = {
     checkSpecialNumber: (password) => {
       const isInvalid = /[!@#$%^&*)(+=._-]+/g.test(password);
 
-      if (isInvalid) {
+      if (!isInvalid) {
         return PASSWORD_FIELD_VALIDATION.REQUIRE_SPECIAL_CHARACTER;
+      }
+
+      return null;
+    },
+  },
+};
+
+export const ValidateConfirmPasswordValue = {
+  required: {
+    value: true,
+    message: PASSWORD_FIELD_VALIDATION.REQUIRED,
+  },
+  validate: {
+    checkIsSame: (confirmPassword, formValues) => {
+      const isValid = formValues.password === confirmPassword;
+
+      if (!isValid) {
+        return PASSWORD_FIELD_VALIDATION.CONFIRM_PASSWORD_NOT_MATCHING;
+      }
+
+      return null;
+    },
+  },
+};
+
+export const ValidateCheckboxValue = {
+  validate: {
+    checkIsChecked: (checkbox) => {
+      const isChecked = checkbox;
+
+      if (!isChecked) {
+        return TERMS_AND_CONDITIONS_REQUIRED;
       }
 
       return null;

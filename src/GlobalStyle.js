@@ -11,8 +11,8 @@ html, body, #root {
   width: 100%;
   font-family: ${({ theme }) => theme.fontFamily.regular};
   overflow-x: hidden;
-  background: black;
-  color: white;
+  color: black;
+  background: white;
 }
 
 h1, h2, h3, h4, h5, h6, p {
