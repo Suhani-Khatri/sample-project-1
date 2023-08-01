@@ -11,8 +11,8 @@ html, body, #root {
   width: 100%;
   font-family: ${({ theme }) => theme.fontFamily.regular};
   overflow-x: hidden;
-  background: black;
-  color: white;
+  color: ${({ theme }) => theme.colors.black};
+  background: ${({ theme }) => theme.colors.white};
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -31,7 +31,7 @@ ul li {
 }
 
 input {
-  accent-color: black;
+  accent-color: ${({ theme }) => theme.colors.black};
 }
 `;
 

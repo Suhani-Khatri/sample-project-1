@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^4.29.17",
+    "antd": "^5.7.3",
     "axios": "^1.4.0",
     "date-fns": "^2.30.0",
     "framer-motion": "^10.12.17",

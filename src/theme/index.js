@@ -27,6 +27,8 @@ const theme = {
     tealBlue: '#3F7B83',
     darkJungleGreen: '#1D2025',
     graniteGray: '#606060',
+    red: 'red',
+    blue: 'blue',
   },
 };
 
