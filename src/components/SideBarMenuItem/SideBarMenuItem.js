@@ -23,8 +23,6 @@ const SideBarMenu = ({ icons, text }) => {
   );
 };
 
-export default SideBarMenu;
-
 SideBarMenu.defaultProps = {
   icons: null,
 };
@@ -33,3 +31,5 @@ SideBarMenu.propTypes = {
   icons: PropTypes.node,
   text: PropTypes.string.isRequired,
 };
+
+export default SideBarMenu;
