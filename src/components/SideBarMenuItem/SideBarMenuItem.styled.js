@@ -11,7 +11,7 @@ export const StyledMenuContent = styled.div`
   padding: 12px;
 
   &:hover {
-    background: #ddd;
+    background: ${({ theme }) => theme.colors.gray};
     border-radius: 50px;
   }
 `;
