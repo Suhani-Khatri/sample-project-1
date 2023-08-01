@@ -4,6 +4,8 @@ import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 import SideBarMenuNavItems from './components/SideBarMenuNavItems';
 
+import { Signup } from '#/modules';
+
 const App = () => {
   const location = useLocation();
 
@@ -11,6 +13,7 @@ const App = () => {
     <Suspense fallback={<div>Loading</div>}>
       <Routes location={location}>
         <Route path="/" element={<SideBarMenuNavItems />} />
+        <Route path="/" element={<Signup />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Suspense>
