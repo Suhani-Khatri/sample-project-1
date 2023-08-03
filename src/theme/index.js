@@ -29,6 +29,14 @@ const theme = {
     graniteGray: '#606060',
     red: 'red',
     blue: 'blue',
+    gray: '#ddd',
+    blackCoral: '#536471',
+    celestialBlue: '#1D9BF0',
+    buttonBlue: '#1d9bf02b',
+    middlePurple: '#DB8AC1',
+    lavenderBlush: '#FBE8F3',
+    teaGreen: '#DBFBB7',
+    olivine: '#A8C982',
   },
 };
 
