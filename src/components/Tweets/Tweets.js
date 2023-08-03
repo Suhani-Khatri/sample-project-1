@@ -18,7 +18,6 @@ import {
   StyledInnerContainer,
   StyledMainUserNames,
   StyledProfileContainer,
-  // StyledText,
   StyledTweetContainer,
   StyledTweetContent,
   StyledTweetWrapper,

@@ -97,12 +97,6 @@ export const StyledMainUserNames = styled.span`
   font-family: 'TwitterChirp', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 `;
 
-// export const UsernameBlock = styled.span`
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-// `;
-
 export const UserName = styled.p`
   font-size: 15px;
   font-weight: 700;
@@ -133,8 +127,6 @@ export const StyledUserNameDetails = styled.span`
 `;
 
 export const UserNameText = styled.p`
-  // display: flex;
-  // align-items: center;
   font-size: 15px;
   font-weight: 400;
 `;
@@ -144,15 +136,6 @@ export const DotBlock = styled.p`
   font-weight: 400;
   padding: 0 4px;
 `;
-
-// export const DotText = styled.p`
-//   align-items: center;
-// `;
-
-// export const DateTimeBlock = styled.div`
-//   display: flex;
-//   align-items: center;
-// `;
 
 export const CurrentDateTime = styled.p`
   font-size: 15px;
@@ -187,11 +170,6 @@ export const TweetDescription = styled.div`
   gap: 10px;
 `;
 
-// export const DescriptionContent = styled.span`
-//   display: flex;
-//   flex-direction: column;
-// `;
-
 export const DescriptionText = styled.span`
   font-size: 15px;
   font-weight: 400;
@@ -217,8 +195,6 @@ export const HashTagText = styled(Link)`
 `;
 
 export const TweetImageBlock = styled.div`
-  // width: 512px;
-  // height: 512px;
   display: flex;
   margin-top: 12px;
 `;
@@ -235,16 +211,3 @@ export const HandleWrapper = styled.div`
   margin-top: 5px;
   width: 100%;
 `;
-
-// export const StyledHandleBlock = styled.div`
-//   display: flex;
-// `;
-
-// export const HandleIcon = styled.div`
-//   display: flex;
-//   align-items: flex-end;
-// `;
-
-// export const HandleCounts = styled.div`
-//   padding: 0 12px;
-// `;
